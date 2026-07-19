@@ -584,31 +584,35 @@ footer.credits{
     if (!str) return null;
     str = str.trim();
     if (!str) return null;
-    // Try native parse first (handles ISO, "Jan 5 2024" etc.)
-    let d = new Date(str);
-    if (!isNaN(d.getTime()) && /[a-zA-Z]/.test(str)) return d;
-    // Try DD-MM-YYYY / DD/MM/YYYY / MM-DD-YYYY variants
+    // Native parse only for strings with a month name, e.g. "5 Jan 2025", "Jan 5, 2025"
+    if (/[a-zA-Z]/.test(str)){
+      const dNamed = new Date(str);
+      if (!isNaN(dNamed.getTime())) return dNamed;
+    }
+    // Numeric date: D-M-Y / D/M/Y / D.M.Y
     const m = str.match(/^(\d{1,4})[\/\-.](\d{1,2})[\/\-.](\d{1,4})$/);
     if (m){
-      let [_, a, b, c] = m;
-      a = parseInt(a,10); b = parseInt(b,10); c = parseInt(c,10);
-      if (String(m[1]).length === 4){ // YYYY-MM-DD
-        d = new Date(a, b-1, c);
-      } else if (c < 100){
-        c += 2000;
-        d = new Date(c, a-1, b); // assume MM-DD-YY fallback
-        if (a > 12) d = new Date(c, b-1, a); // DD-MM-YY
+      const a = parseInt(m[1],10), b = parseInt(m[2],10);
+      let c = parseInt(m[3],10);
+      let year, month, day;
+      if (m[1].length === 4){
+        // YYYY-MM-DD
+        year = a; month = b; day = c;
       } else {
-        // ambiguous DD-MM-YYYY vs MM-DD-YYYY: prefer DD-MM if first > 12
-        if (a > 12) d = new Date(c, b-1, a);
-        else d = new Date(c, a-1, b);
+        if (c < 100) c += 2000; // 2-digit year
+        year = c;
+        // Day-first (DD-MM-YYYY) is the default for this register.
+        // Only switch to month-first if the numbers make day-first impossible.
+        if (a > 12 && b <= 12){ day = a; month = b; }        // a can't be a month -> DD-MM
+        else if (b > 12 && a <= 12){ month = a; day = b; }   // b can't be a month -> MM-DD
+        else { day = a; month = b; }                          // ambiguous -> default DD-MM
       }
-      if (!isNaN(d.getTime())) return d;
+      const d = new Date(year, month-1, day);
+      if (!isNaN(d.getTime()) && d.getMonth() === month-1) return d; // guards against overflow (e.g. day 31 in a 30-day month)
     }
-    d = new Date(str);
-    return isNaN(d.getTime()) ? null : d;
+    const dFallback = new Date(str);
+    return isNaN(dFallback.getTime()) ? null : dFallback;
   }
-
   function parseNumber(str){
     if (str === null || str === undefined) return 0;
     const cleaned = String(str).replace(/[^0-9.\-]/g, '');
