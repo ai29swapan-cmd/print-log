@@ -448,7 +448,7 @@ footer.credits{
         <div class="chart-canvas-wrap"><canvas id="chartTrend"></canvas></div>
       </div>
       <div class="chart-card">
-        <h3>Submitted to <span class="count-tag" id="tagSubmitted"></span></h3>
+        <h3>Who asked <span class="count-tag" id="tagSubmitted"></span></h3>
         <div class="chart-canvas-wrap"><canvas id="chartSubmitted"></canvas></div>
       </div>
     </section>
@@ -459,6 +459,7 @@ footer.credits{
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
           <input type="text" id="searchInput" placeholder="Search remarks, profile, requester…">
         </div>
+        <select class="filter-select" id="filterMonth"><option value="">All months</option></select>
         <select class="filter-select" id="filterEngineer"><option value="">All engineers</option></select>
         <select class="filter-select" id="filterProfile"><option value="">All profiles</option></select>
         <select class="filter-select" id="filterSubmitted"><option value="">All submitted to</option></select>
@@ -491,7 +492,10 @@ footer.credits{
 
   </main>
 
-  <footer class="credits">PROOF REGISTER DASHBOARD · RUNS ENTIRELY IN YOUR BROWSER · NO DATA LEAVES THIS DEVICE</footer>
+  <footer class="credits">
+    PROOF REGISTER DASHBOARD · RUNS ENTIRELY IN YOUR BROWSER · NO DATA LEAVES THIS DEVICE
+    <div style="margin-top:6px;">Designed &amp; Developed by Swaapan Kumarr Sardar</div>
+  </footer>
 </div>
 
 <script>
@@ -743,6 +747,7 @@ footer.credits{
   function uniqueSorted(arr){ return [...new Set(arr)].filter(Boolean).sort((a,b)=>a.localeCompare(b)); }
 
   function populateFilters(rows){
+    fillMonthFilter(rows);
     fillSelect('filterEngineer', uniqueSorted(rows.map(r=>r.engineer)), 'All engineers');
     fillSelect('filterProfile', uniqueSorted(rows.map(r=>r.profile)), 'All profiles');
     fillSelect('filterSubmitted', uniqueSorted(rows.map(r=>r.submittedTo)), 'All submitted to');
@@ -752,13 +757,27 @@ footer.credits{
     sel.innerHTML = '<option value="">' + defaultLabel + '</option>' +
       values.map(v => `<option value="${escapeAttr(v)}">${escapeHTML(v)}</option>`).join('');
   }
+  function fillMonthFilter(rows){
+    const keys = new Map(); // "YYYY-MM" -> display label
+    rows.forEach(r => {
+      if (!r.date) return;
+      const key = r.date.getFullYear() + '-' + String(r.date.getMonth()+1).padStart(2,'0');
+      if (!keys.has(key)) keys.set(key, r.date.toLocaleDateString('en-GB', { month:'long', year:'numeric' }));
+    });
+    const sortedKeys = [...keys.keys()].sort().reverse(); // latest month first
+    const sel = document.getElementById('filterMonth');
+    sel.innerHTML = '<option value="">All months</option>' +
+      sortedKeys.map(k => `<option value="${k}">${escapeHTML(keys.get(k))}</option>`).join('');
+  }
 
   document.getElementById('searchInput').addEventListener('input', debounce(()=>{currentPage=1;applyFiltersAndRender();},180));
+  document.getElementById('filterMonth').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
   document.getElementById('filterEngineer').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
   document.getElementById('filterProfile').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
   document.getElementById('filterSubmitted').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
   document.getElementById('clearFiltersBtn').addEventListener('click', ()=>{
     document.getElementById('searchInput').value='';
+    document.getElementById('filterMonth').value='';
     document.getElementById('filterEngineer').value='';
     document.getElementById('filterProfile').value='';
     document.getElementById('filterSubmitted').value='';
@@ -777,11 +796,17 @@ footer.credits{
      ============================================================ */
   function applyFiltersAndRender(){
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const fMonth = document.getElementById('filterMonth').value;
     const fEng = document.getElementById('filterEngineer').value;
     const fProf = document.getElementById('filterProfile').value;
     const fSub = document.getElementById('filterSubmitted').value;
 
     filteredRows = rawRows.filter(r => {
+      if (fMonth){
+        if (!r.date) return false;
+        const key = r.date.getFullYear() + '-' + String(r.date.getMonth()+1).padStart(2,'0');
+        if (key !== fMonth) return false;
+      }
       if (fEng && r.engineer !== fEng) return false;
       if (fProf && r.profile !== fProf) return false;
       if (fSub && r.submittedTo !== fSub) return false;
@@ -1008,7 +1033,7 @@ footer.credits{
 
   function renderSubmittedChart(rows){
     destroyIf('submitted');
-    const map = aggregateSum(rows, r=>r.submittedTo, ()=>1);
+    const map = aggregateSum(rows, r=>r.whoAsked, ()=>1);
     const data = topN(map, 8);
     document.getElementById('tagSubmitted').textContent = data.length + ' shown';
     const ctx = document.getElementById('chartSubmitted').getContext('2d');
