@@ -188,7 +188,7 @@ button{font-family:var(--font-body);cursor:pointer;}
 /* ---------- KPI grid ---------- */
 .kpi-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:12px;
   margin-bottom:12px;
 }
@@ -866,7 +866,6 @@ footer.credits{
     const totalRequests = rows.length;
     const totalPrints = rows.reduce((s,r)=>s+r.prints,0);
     const totalCost = rows.reduce((s,r)=>s+r.cost,0);
-    const uniqueEngineers = new Set(rows.map(r=>r.engineer)).size;
     const dates = rows.map(r=>r.date).filter(Boolean);
     let rangeLabel = '—';
     if (dates.length){
@@ -879,8 +878,7 @@ footer.credits{
       { tag:'01', label:'Total Requests', value: formatInt(totalRequests), sub:'log entries', cls:'' },
       { tag:'02', label:'Total Prints', value: formatInt(totalPrints), sub:'sheets issued', cls:'c-cyan' },
       { tag:'03', label:'Total Cost', value: formatCurrency(totalCost), sub:'across selection', cls:'c-magenta' },
-      { tag:'04', label:'Engineers Involved', value: formatInt(uniqueEngineers), sub:'unique', cls:'c-teal' },
-      { tag:'05', label:'Date Range', value: rangeLabel, sub:'first – last', cls:'' , small:true}
+      { tag:'04', label:'Date Range', value: rangeLabel, sub:'first – last', cls:'' , small:true}
     ];
 
     const grid = document.getElementById('kpiGrid');
@@ -917,6 +915,7 @@ footer.credits{
         <div class="month-stat"><span class="m-label">Requests</span><span class="m-value">${formatInt(reqs)}</span></div>
         <div class="month-stat c-cyan"><span class="m-label">Prints</span><span class="m-value">${formatInt(prints)}</span></div>
         <div class="month-stat c-magenta"><span class="m-label">Cost</span><span class="m-value">${formatCurrency(cost)}</span></div>
+        <div class="month-stat c-teal"><span class="m-label">Engineers</span><span class="m-value">${formatInt(engineers)}</span></div>
       </div>
     `;
   }
