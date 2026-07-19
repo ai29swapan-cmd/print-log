@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAH &mdash; Print Request Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:#EBEDEF;
+  --bg-halftone-dot: rgba(22,24,29,0.05);
+  --paper:#F6F6F4;
+  --card:#FFFFFF;
+  --ink:#16181D;
+  --ink-soft:#5B606B;
+  --ink-faint:#8B909A;
+  --border:rgba(22,24,29,0.14);
+  --border-soft:rgba(22,24,29,0.08);
+  --cyan:#0089B3;
+  --magenta:#B2005F;
+  --yellow:#B5820A;
+  --teal:#2C7A6C;
+  --shadow:0 1px 2px rgba(22,24,29,.05), 0 1px 1px rgba(22,24,29,.04);
+  --shadow-lg:0 8px 24px rgba(22,24,29,.10);
+  --radius:10px;
+  --font-display:'Barlow Condensed', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+}
+[data-theme="dark"]{
+  --bg:#121419;
+  --bg-halftone-dot: rgba(237,238,240,0.045);
+  --paper:#191C22;
+  --card:#1D2027;
+  --ink:#EDEEF0;
+  --ink-soft:#A6ABB6;
+  --ink-faint:#6E7480;
+  --border:rgba(237,238,240,0.13);
+  --border-soft:rgba(237,238,240,0.07);
+  --cyan:#3FC4FF;
+  --magenta:#FF4FA8;
+  --yellow:#FFCB3D;
+  --teal:#4FD3B9;
+  --shadow:0 1px 2px rgba(0,0,0,.35);
+  --shadow-lg:0 12px 28px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(var(--bg-halftone-dot) 1px, transparent 1px);
+  background-size:14px 14px;
+  color:var(--ink);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  transition:background-color .25s ease, color .25s ease;
+}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0;letter-spacing:.2px;}
+.mono{font-family:var(--font-mono);}
+button{font-family:var(--font-body);cursor:pointer;}
+::selection{background:var(--cyan);color:#fff;}
+
+/* ============================================================
+   REGISTRATION MARK — signature element (print industry crop/reg mark)
+   ============================================================ */
+.reg-mark{
+  position:relative;
+  width:18px;height:18px;
+  flex:none;
+}
+.reg-mark::before,.reg-mark::after{
+  content:"";
+  position:absolute;
+  background:var(--ink-faint);
+}
+.reg-mark::before{ /* vertical line */
+  left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%);
+}
+.reg-mark::after{ /* horizontal line */
+  top:50%;left:0;right:0;height:1px;transform:translateY(-50%);
+}
+.reg-mark-circle{
+  position:absolute;top:50%;left:50%;
+  width:9px;height:9px;
+  border:1px solid var(--ink-faint);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+.app{max-width:1320px;margin:0 auto;padding:20px 20px 64px;}
+
+/* ---------- Title block (header) ---------- */
+.titleblock{
+  position:relative;
+  border:1px solid var(--border);
+  background:var(--paper);
+  border-radius:var(--radius);
+  padding:18px 22px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+.titleblock .corner{position:absolute;}
+.titleblock .corner.tl{top:8px;left:8px;}
+.titleblock .corner.tr{top:8px;right:8px;}
+.titleblock .corner.bl{bottom:8px;left:8px;}
+.titleblock .corner.br{bottom:8px;right:8px;}
+.titleblock-main{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex:none;
+}
+.brand-mark::before,.brand-mark::after{content:"";position:absolute;background:var(--ink);}
+.brand-mark::before{left:6px;right:6px;top:50%;height:1.5px;transform:translateY(-50%);}
+.brand-mark::after{top:6px;bottom:6px;left:50%;width:1.5px;transform:translateX(-50%);}
+.brand-text h1{font-size:26px;line-height:1;text-transform:uppercase;letter-spacing:.5px;}
+.brand-text p{margin:4px 0 0;font-size:12.5px;color:var(--ink-soft);letter-spacing:.3px;}
+.file-status{
+  font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);
+  margin-top:6px;letter-spacing:.2px;
+}
+.titleblock-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+
+.btn{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--ink);
+  font-size:13px;font-weight:600;
+  padding:9px 14px;
+  border-radius:7px;
+  display:inline-flex;align-items:center;gap:7px;
+  transition:border-color .15s, transform .1s, box-shadow .15s;
+}
+.btn:hover{border-color:var(--ink-faint);box-shadow:var(--shadow);}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.btn-primary:hover{opacity:.88;}
+.btn-ghost{background:transparent;}
+.icon{width:15px;height:15px;flex:none;}
+
+.theme-toggle{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--border);background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  flex:none;
+}
+.theme-toggle svg{width:17px;height:17px;stroke:var(--ink);}
+
+/* ---------- Empty state ---------- */
+.empty-state{
+  border:1.5px dashed var(--border);
+  border-radius:var(--radius);
+  background:var(--paper);
+  padding:70px 24px;
+  text-align:center;
+  transition:border-color .15s, background .15s;
+}
+.empty-state.dragover{border-color:var(--cyan);background:var(--card);}
+.empty-mark{
+  width:64px;height:64px;margin:0 auto 20px;
+  border:1.5px solid var(--ink-faint);border-radius:50%;
+  position:relative;
+}
+.empty-mark::before,.empty-mark::after{content:"";position:absolute;background:var(--ink-faint);}
+.empty-mark::before{left:9px;right:9px;top:50%;height:1.5px;transform:translateY(-50%);}
+.empty-mark::after{top:9px;bottom:9px;left:50%;width:1.5px;transform:translateX(-50%);}
+.empty-state h2{font-size:22px;text-transform:uppercase;letter-spacing:.4px;}
+.empty-state p{color:var(--ink-soft);font-size:14px;margin:10px 0 24px;}
+.empty-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.hidden{display:none !important;}
+
+/* ---------- KPI grid ---------- */
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+.kpi-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px 16px 12px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.kpi-card::before{
+  content:attr(data-tag);
+  position:absolute;top:10px;right:12px;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:1px;
+  color:var(--ink-faint);text-transform:uppercase;
+}
+.kpi-label{
+  font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--ink-soft);font-weight:600;margin-bottom:8px;
+}
+.kpi-value{
+  font-family:var(--font-mono);font-weight:700;font-size:24px;
+  letter-spacing:-.5px;
+}
+.kpi-sub{font-size:11px;color:var(--ink-faint);margin-top:4px;font-family:var(--font-mono);}
+.kpi-card.c-cyan .kpi-value{color:var(--cyan);}
+.kpi-card.c-magenta .kpi-value{color:var(--magenta);}
+.kpi-card.c-yellow .kpi-value{color:var(--yellow);}
+.kpi-card.c-teal .kpi-value{color:var(--teal);}
+
+/* ---------- Charts grid ---------- */
+.charts-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+.chart-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:16px 18px 10px;
+}
+.chart-card h3{
+  font-size:14px;text-transform:uppercase;letter-spacing:.5px;
+  margin-bottom:10px;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.chart-card h3 span.count-tag{
+  font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);
+  text-transform:none;letter-spacing:0;
+}
+.chart-canvas-wrap{position:relative;height:230px;}
+
+/* ---------- Table section ---------- */
+.table-section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.table-toolbar{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  padding:14px 16px;
+  border-bottom:1px solid var(--border-soft);
+}
+.search-box{
+  flex:1 1 220px;position:relative;
+}
+.search-box input{
+  width:100%;padding:9px 12px 9px 34px;
+  border:1px solid var(--border);border-radius:7px;
+  background:var(--paper);color:var(--ink);font-size:13.5px;
+  font-family:var(--font-body);
+}
+.search-box input:focus{outline:2px solid var(--cyan);outline-offset:1px;}
+.search-box svg{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  width:14px;height:14px;stroke:var(--ink-faint);
+}
+select.filter-select{
+  padding:9px 10px;border:1px solid var(--border);border-radius:7px;
+  background:var(--paper);color:var(--ink);font-size:13px;font-family:var(--font-body);
+  max-width:170px;
+}
+select.filter-select:focus{outline:2px solid var(--cyan);outline-offset:1px;}
+.toolbar-spacer{flex:1;}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{
+  position:sticky;top:0;background:var(--paper);
+  text-align:left;padding:10px 14px;
+  font-family:var(--font-mono);font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);
+  border-bottom:1px solid var(--border);white-space:nowrap;
+  cursor:pointer;user-select:none;
+}
+thead th:hover{color:var(--ink);}
+thead th .sort-arrow{margin-left:4px;font-size:9px;color:var(--ink-faint);}
+tbody td{
+  padding:10px 14px;border-bottom:1px solid var(--border-soft);
+  color:var(--ink);vertical-align:top;
+}
+tbody td.num, thead th.num{font-family:var(--font-mono);text-align:right;}
+tbody tr:hover{background:var(--paper);}
+tbody td.remarks-cell{max-width:220px;color:var(--ink-soft);}
+.pill{
+  display:inline-block;padding:2px 8px;border-radius:100px;
+  font-size:11px;font-family:var(--font-mono);
+  border:1px solid var(--border);color:var(--ink-soft);white-space:nowrap;
+}
+.no-results{padding:40px;text-align:center;color:var(--ink-faint);font-size:13.5px;}
+
+.table-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;flex-wrap:wrap;gap:10px;
+  border-top:1px solid var(--border-soft);
+}
+.result-count{font-size:12px;color:var(--ink-faint);font-family:var(--font-mono);}
+.pagination{display:flex;align-items:center;gap:6px;}
+.page-btn{
+  border:1px solid var(--border);background:var(--paper);color:var(--ink);
+  width:30px;height:30px;border-radius:6px;font-size:12px;font-family:var(--font-mono);
+  display:flex;align-items:center;justify-content:center;
+}
+.page-btn:hover:not(:disabled){border-color:var(--ink-faint);}
+.page-btn:disabled{opacity:.35;cursor:default;}
+.page-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+footer.credits{
+  text-align:center;margin-top:26px;
+  font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);
+  letter-spacing:.3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){
+  .kpi-grid{grid-template-columns:repeat(3,1fr);}
+  .charts-grid{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .titleblock-main{align-items:flex-start;}
+  .app{padding:14px 12px 40px;}
+  .brand-text h1{font-size:21px;}
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ TITLE BLOCK / HEADER ============ -->
+  <header class="titleblock">
+    <div class="reg-mark corner tl"><div class="reg-mark-circle"></div></div>
+    <div class="reg-mark corner br"><div class="reg-mark-circle"></div></div>
+    <div class="titleblock-main">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <h1>TRAH Print Log</h1>
+          <p>Print request tracking &amp; cost dashboard</p>
+          <div class="file-status" id="fileStatus">NO FILE LOADED</div>
+        </div>
+      </div>
+      <div class="titleblock-actions">
+        <button class="btn btn-ghost" id="resetBtn" style="display:none;">
+          Upload new file
+        </button>
+        <label class="btn btn-primary" for="csvInput">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          Upload CSV
+        </label>
+        <input type="file" id="csvInput" accept=".csv,text/csv" hidden>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark / light mode">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ EMPTY STATE ============ -->
+  <div class="empty-state hidden" id="autoLoadState">
+    <div class="empty-mark" aria-hidden="true"></div>
+    <h2>Loading latest data…</h2>
+    <p>Checking for <span class="mono">data.csv</span> in this folder.</p>
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    <div class="empty-mark" aria-hidden="true"></div>
+    <h2>Load a print log to begin</h2>
+    <p>Drop a CSV here, browse for a file, or preview the dashboard with sample data.<br>
+       Expected columns: Date, Profile, Who Asked, No of Prints, Engineer_Name, Remarks, Submitted To, Cost</p>
+    <div class="empty-actions">
+      <label class="btn btn-primary" for="csvInputEmpty">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Browse for CSV
+      </label>
+      <input type="file" id="csvInputEmpty" accept=".csv,text/csv" hidden>
+      <button class="btn" id="sampleBtn">Load sample data</button>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <main id="dashboard" class="hidden">
+
+    <section class="kpi-grid" id="kpiGrid" aria-label="Key metrics"></section>
+
+    <section class="charts-grid">
+      <div class="chart-card">
+        <h3>Prints by engineer <span class="count-tag" id="tagEngineer"></span></h3>
+        <div class="chart-canvas-wrap"><canvas id="chartEngineer"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Requests by profile <span class="count-tag" id="tagProfile"></span></h3>
+        <div class="chart-canvas-wrap"><canvas id="chartProfile"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Cost over time <span class="count-tag" id="tagTrend"></span></h3>
+        <div class="chart-canvas-wrap"><canvas id="chartTrend"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Submitted to <span class="count-tag" id="tagSubmitted"></span></h3>
+        <div class="chart-canvas-wrap"><canvas id="chartSubmitted"></canvas></div>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <div class="table-toolbar">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="searchInput" placeholder="Search remarks, profile, requester…">
+        </div>
+        <select class="filter-select" id="filterEngineer"><option value="">All engineers</option></select>
+        <select class="filter-select" id="filterProfile"><option value="">All profiles</option></select>
+        <select class="filter-select" id="filterSubmitted"><option value="">All submitted to</option></select>
+        <div class="toolbar-spacer"></div>
+        <button class="btn" id="clearFiltersBtn">Clear filters</button>
+        <button class="btn" id="exportBtn">Export view (CSV)</button>
+      </div>
+      <div class="table-wrap">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th data-key="date">Date<span class="sort-arrow"></span></th>
+              <th data-key="profile">Profile<span class="sort-arrow"></span></th>
+              <th data-key="whoAsked">Who Asked<span class="sort-arrow"></span></th>
+              <th data-key="prints" class="num">No. of Prints<span class="sort-arrow"></span></th>
+              <th data-key="engineer">Engineer<span class="sort-arrow"></span></th>
+              <th data-key="remarks">Remarks<span class="sort-arrow"></span></th>
+              <th data-key="submittedTo">Submitted To<span class="sort-arrow"></span></th>
+              <th data-key="cost" class="num">Cost<span class="sort-arrow"></span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <div class="result-count" id="resultCount"></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="credits">TRAH PRINT LOG · RUNS ENTIRELY IN YOUR BROWSER · NO DATA LEAVES THIS DEVICE</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     STATE
+     ============================================================ */
+  let rawRows = [];        // processed row objects
+  let filteredRows = [];
+  let sortKey = "date";
+  let sortDir = "desc";
+  let currentPage = 1;
+  const PAGE_SIZE = 12;
+  let charts = {};
+
+  const CMYK = {
+    cyan: getVar('--cyan'), magenta: getVar('--magenta'),
+    yellow: getVar('--yellow'), teal: getVar('--teal'),
+    ink: getVar('--ink'), inkSoft: getVar('--ink-soft')
+  };
+  function getVar(name){
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#888';
+  }
+
+  /* ============================================================
+     THEME
+     ============================================================ */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  let theme = 'light';
+  function applyTheme(){
+    document.documentElement.setAttribute('data-theme', theme);
+    themeIcon.innerHTML = theme === 'dark'
+      ? '<path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" fill="currentColor" stroke="none"/>'
+      : '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+    refreshChartColors();
+  }
+  themeToggle.addEventListener('click', function(){
+    theme = theme === 'dark' ? 'light' : 'dark';
+    applyTheme();
+  });
+  applyTheme();
+
+  /* ============================================================
+     CSV PARSING (handles quoted fields, embedded commas/newlines)
+     ============================================================ */
+  function parseCSV(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    for (let i = 0; i < text.length; i++){
+      const c = text[i];
+      if (inQuotes){
+        if (c === '"'){
+          if (text[i+1] === '"'){ field += '"'; i++; }
+          else inQuotes = false;
+        } else field += c;
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ','){ row.push(field); field = ''; }
+        else if (c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+        else field += c;
+      }
+    }
+    if (field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => r.length && !(r.length === 1 && r[0].trim() === ''));
+  }
+
+  function normalizeHeader(h){
+    return h.trim().toLowerCase().replace(/[\s_]+/g, ' ').trim();
+  }
+
+  const HEADER_MAP = {
+    'date': 'date',
+    'profile': 'profile',
+    'who asked': 'whoAsked',
+    'no of prints': 'prints',
+    'no. of prints': 'prints',
+    'number of prints': 'prints',
+    'engineer name': 'engineer',
+    'engineer': 'engineer',
+    'remarks': 'remarks',
+    'submitted to': 'submittedTo',
+    'cost': 'cost'
+  };
+
+  function parseDate(str){
+    if (!str) return null;
+    str = str.trim();
+    if (!str) return null;
+    // Try native parse first (handles ISO, "Jan 5 2024" etc.)
+    let d = new Date(str);
+    if (!isNaN(d.getTime()) && /[a-zA-Z]/.test(str)) return d;
+    // Try DD-MM-YYYY / DD/MM/YYYY / MM-DD-YYYY variants
+    const m = str.match(/^(\d{1,4})[\/\-.](\d{1,2})[\/\-.](\d{1,4})$/);
+    if (m){
+      let [_, a, b, c] = m;
+      a = parseInt(a,10); b = parseInt(b,10); c = parseInt(c,10);
+      if (String(m[1]).length === 4){ // YYYY-MM-DD
+        d = new Date(a, b-1, c);
+      } else if (c < 100){
+        c += 2000;
+        d = new Date(c, a-1, b); // assume MM-DD-YY fallback
+        if (a > 12) d = new Date(c, b-1, a); // DD-MM-YY
+      } else {
+        // ambiguous DD-MM-YYYY vs MM-DD-YYYY: prefer DD-MM if first > 12
+        if (a > 12) d = new Date(c, b-1, a);
+        else d = new Date(c, a-1, b);
+      }
+      if (!isNaN(d.getTime())) return d;
+    }
+    d = new Date(str);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function parseNumber(str){
+    if (str === null || str === undefined) return 0;
+    const cleaned = String(str).replace(/[^0-9.\-]/g, '');
+    const n = parseFloat(cleaned);
+    return isNaN(n) ? 0 : n;
+  }
+
+  function formatDate(d){
+    if (!d) return '—';
+    const opts = { day:'2-digit', month:'short', year:'numeric' };
+    return d.toLocaleDateString('en-GB', opts);
+  }
+  function formatCurrency(n){
+    return '₹' + n.toLocaleString('en-IN', {maximumFractionDigits:2, minimumFractionDigits: n % 1 === 0 ? 0 : 2});
+  }
+  function formatInt(n){ return n.toLocaleString('en-IN'); }
+
+  function processCSVText(text){
+    const table = parseCSV(text);
+    if (!table.length) throw new Error('Empty file');
+    const headerRow = table[0].map(normalizeHeader);
+    const colIndex = {};
+    headerRow.forEach((h, i) => {
+      const key = HEADER_MAP[h];
+      if (key) colIndex[key] = i;
+    });
+
+    const rows = [];
+    for (let r = 1; r < table.length; r++){
+      const rec = table[r];
+      if (!rec || rec.every(c => c.trim() === '')) continue;
+      const get = (key) => colIndex[key] !== undefined ? (rec[colIndex[key]] || '').trim() : '';
+      const dateStr = get('date');
+      const dateObj = parseDate(dateStr);
+      rows.push({
+        dateRaw: dateStr,
+        date: dateObj,
+        profile: get('profile') || 'Unspecified',
+        whoAsked: get('whoAsked') || 'Unspecified',
+        prints: Math.round(parseNumber(get('prints'))),
+        engineer: get('engineer') || 'Unassigned',
+        remarks: get('remarks'),
+        submittedTo: get('submittedTo') || 'Unspecified',
+        cost: parseNumber(get('cost'))
+      });
+    }
+    return rows;
+  }
+
+  /* ============================================================
+     SAMPLE DATA
+     ============================================================ */
+  function generateSampleData(){
+    const profiles = ['Structural-A1','Mechanical-B2','Electrical-C3','Piping-D4','HVAC-E5','Civil-F6'];
+    const requesters = ['R. Sharma','A. Verma','S. Nair','K. Mehta','P. Iyer','J. Kaur'];
+    const engineers = ['Engr. Patel','Engr. Rao','Engr. D\'Souza','Engr. Bose','Engr. Khan','Engr. Fernandes'];
+    const submitted = ['Site Office','QA Dept','Client Rep','Project Manager','Archive','Vendor'];
+    const remarksBank = [
+      'As-built revision issued', 'Reprint due to smudged copy', 'For approval before fabrication',
+      'Urgent site request', 'Colour print for presentation', 'Reissued after markup review',
+      'Standard weekly batch', 'Draft copy only, not for construction', 'Final signed copy',
+      'Replacement for damaged print'
+    ];
+    const rows = [];
+    const start = new Date(2025, 0, 1);
+    for (let i = 0; i < 140; i++){
+      const d = new Date(start.getTime() + Math.random() * (Date.now() - start.getTime()));
+      rows.push({
+        dateRaw: d.toISOString(),
+        date: d,
+        profile: profiles[Math.floor(Math.random()*profiles.length)],
+        whoAsked: requesters[Math.floor(Math.random()*requesters.length)],
+        prints: 1 + Math.floor(Math.random()*24),
+        engineer: engineers[Math.floor(Math.random()*engineers.length)],
+        remarks: remarksBank[Math.floor(Math.random()*remarksBank.length)],
+        submittedTo: submitted[Math.floor(Math.random()*submitted.length)],
+        cost: Math.round((10 + Math.random()*480) * 100) / 100
+      });
+    }
+    return rows;
+  }
+
+  /* ============================================================
+     LOADING PIPELINE
+     ============================================================ */
+  const emptyState = document.getElementById('emptyState');
+  const autoLoadState = document.getElementById('autoLoadState');
+  const dashboard = document.getElementById('dashboard');
+  const fileStatus = document.getElementById('fileStatus');
+  const resetBtn = document.getElementById('resetBtn');
+
+  function loadRows(rows, label){
+    rawRows = rows;
+    autoLoadState.classList.add('hidden');
+    emptyState.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    resetBtn.style.display = 'inline-flex';
+    fileStatus.textContent = label + ' · ' + rows.length + ' RECORDS';
+    populateFilters(rows);
+    sortKey = 'date'; sortDir = 'desc'; currentPage = 1;
+    document.getElementById('searchInput').value = '';
+    applyFiltersAndRender();
+  }
+
+  // On page load, try to auto-fetch "data.csv" sitting next to this HTML file.
+  // Lets you host this dashboard with a data file that updates monthly —
+  // visitors just open the link and see the latest numbers, no upload needed.
+  // If data.csv isn't found (e.g. opened straight from disk), falls back to
+  // the normal upload / sample-data screen.
+  function tryAutoLoad(){
+    emptyState.classList.add('hidden');
+    autoLoadState.classList.remove('hidden');
+    fetch('data.csv', { cache: 'no-store' })
+      .then(res => { if (!res.ok) throw new Error('not found'); return res.text(); })
+      .then(text => {
+        const rows = processCSVText(text);
+        if (!rows.length) throw new Error('empty');
+        loadRows(rows, 'DATA.CSV');
+      })
+      .catch(() => {
+        autoLoadState.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+      });
+  }
+
+  function handleFile(file){
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try {
+        const rows = processCSVText(e.target.result);
+        if (!rows.length){ alert('No valid rows found in this file. Please check the CSV format.'); return; }
+        loadRows(rows, file.name.toUpperCase());
+      } catch(err){
+        alert('Could not parse this CSV. Please check the file format.\n\n' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  document.getElementById('csvInput').addEventListener('change', e => handleFile(e.target.files[0]));
+  document.getElementById('csvInputEmpty').addEventListener('change', e => handleFile(e.target.files[0]));
+  document.getElementById('sampleBtn').addEventListener('click', () => loadRows(generateSampleData(), 'SAMPLE DATA'));
+  resetBtn.addEventListener('click', function(){
+    dashboard.classList.add('hidden');
+    emptyState.classList.remove('hidden');
+    resetBtn.style.display = 'none';
+    fileStatus.textContent = 'NO FILE LOADED';
+    document.getElementById('csvInput').value = '';
+    document.getElementById('csvInputEmpty').value = '';
+  });
+
+  ['dragenter','dragover'].forEach(evt =>
+    emptyState.addEventListener(evt, e => { e.preventDefault(); emptyState.classList.add('dragover'); })
+  );
+  ['dragleave','drop'].forEach(evt =>
+    emptyState.addEventListener(evt, e => { e.preventDefault(); emptyState.classList.remove('dragover'); })
+  );
+  emptyState.addEventListener('drop', e => {
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+
+  tryAutoLoad();
+
+  /* ============================================================
+     FILTER DROPDOWNS
+     ============================================================ */
+  function uniqueSorted(arr){ return [...new Set(arr)].filter(Boolean).sort((a,b)=>a.localeCompare(b)); }
+
+  function populateFilters(rows){
+    fillSelect('filterEngineer', uniqueSorted(rows.map(r=>r.engineer)), 'All engineers');
+    fillSelect('filterProfile', uniqueSorted(rows.map(r=>r.profile)), 'All profiles');
+    fillSelect('filterSubmitted', uniqueSorted(rows.map(r=>r.submittedTo)), 'All submitted to');
+  }
+  function fillSelect(id, values, defaultLabel){
+    const sel = document.getElementById(id);
+    sel.innerHTML = '<option value="">' + defaultLabel + '</option>' +
+      values.map(v => `<option value="${escapeAttr(v)}">${escapeHTML(v)}</option>`).join('');
+  }
+
+  document.getElementById('searchInput').addEventListener('input', debounce(()=>{currentPage=1;applyFiltersAndRender();},180));
+  document.getElementById('filterEngineer').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
+  document.getElementById('filterProfile').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
+  document.getElementById('filterSubmitted').addEventListener('change', ()=>{currentPage=1;applyFiltersAndRender();});
+  document.getElementById('clearFiltersBtn').addEventListener('click', ()=>{
+    document.getElementById('searchInput').value='';
+    document.getElementById('filterEngineer').value='';
+    document.getElementById('filterProfile').value='';
+    document.getElementById('filterSubmitted').value='';
+    currentPage=1;
+    applyFiltersAndRender();
+  });
+  document.getElementById('exportBtn').addEventListener('click', exportCSV);
+
+  function debounce(fn, wait){
+    let t;
+    return function(...args){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,args), wait); };
+  }
+
+  /* ============================================================
+     FILTER + SORT PIPELINE
+     ============================================================ */
+  function applyFiltersAndRender(){
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const fEng = document.getElementById('filterEngineer').value;
+    const fProf = document.getElementById('filterProfile').value;
+    const fSub = document.getElementById('filterSubmitted').value;
+
+    filteredRows = rawRows.filter(r => {
+      if (fEng && r.engineer !== fEng) return false;
+      if (fProf && r.profile !== fProf) return false;
+      if (fSub && r.submittedTo !== fSub) return false;
+      if (q){
+        const hay = [r.profile, r.whoAsked, r.engineer, r.remarks, r.submittedTo].join(' ').toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+
+    sortRows();
+    renderKPIs(filteredRows);
+    renderCharts(filteredRows);
+    renderTable();
+  }
+
+  function sortRows(){
+    const dir = sortDir === 'asc' ? 1 : -1;
+    filteredRows.sort((a,b) => {
+      let av = a[sortKey], bv = b[sortKey];
+      if (sortKey === 'date'){
+        av = av ? av.getTime() : -Infinity;
+        bv = bv ? bv.getTime() : -Infinity;
+      } else if (sortKey === 'prints' || sortKey === 'cost'){
+        av = av || 0; bv = bv || 0;
+      } else {
+        av = (av||'').toLowerCase(); bv = (bv||'').toLowerCase();
+      }
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
+  }
+
+  document.querySelectorAll('#dataTable thead th').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.key;
+      if (sortKey === key) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      else { sortKey = key; sortDir = 'asc'; }
+      updateSortArrows();
+      sortRows();
+      renderTable();
+    });
+  });
+  function updateSortArrows(){
+    document.querySelectorAll('#dataTable thead th').forEach(th => {
+      const arrow = th.querySelector('.sort-arrow');
+      if (th.dataset.key === sortKey) arrow.textContent = sortDir === 'asc' ? '▲' : '▼';
+      else arrow.textContent = '';
+    });
+  }
+
+  /* ============================================================
+     KPI RENDERING
+     ============================================================ */
+  function renderKPIs(rows){
+    const totalRequests = rows.length;
+    const totalPrints = rows.reduce((s,r)=>s+r.prints,0);
+    const totalCost = rows.reduce((s,r)=>s+r.cost,0);
+    const uniqueEngineers = new Set(rows.map(r=>r.engineer)).size;
+    const avgCostPerPrint = totalPrints ? totalCost/totalPrints : 0;
+    const dates = rows.map(r=>r.date).filter(Boolean);
+    let rangeLabel = '—';
+    if (dates.length){
+      const min = new Date(Math.min(...dates.map(d=>d.getTime())));
+      const max = new Date(Math.max(...dates.map(d=>d.getTime())));
+      rangeLabel = formatDate(min) + ' – ' + formatDate(max);
+    }
+
+    const kpis = [
+      { tag:'01', label:'Total Requests', value: formatInt(totalRequests), sub:'log entries', cls:'' },
+      { tag:'02', label:'Total Prints', value: formatInt(totalPrints), sub:'sheets issued', cls:'c-cyan' },
+      { tag:'03', label:'Total Cost', value: formatCurrency(totalCost), sub:'across selection', cls:'c-magenta' },
+      { tag:'04', label:'Avg Cost / Print', value: formatCurrency(avgCostPerPrint), sub:'per sheet', cls:'c-yellow' },
+      { tag:'05', label:'Engineers Involved', value: formatInt(uniqueEngineers), sub:'unique', cls:'c-teal' },
+      { tag:'06', label:'Date Range', value: rangeLabel, sub:'first – last', cls:'' , small:true}
+    ];
+
+    const grid = document.getElementById('kpiGrid');
+    grid.innerHTML = kpis.map(k => `
+      <div class="kpi-card ${k.cls}" data-tag="${k.tag}">
+        <div class="kpi-label">${k.label}</div>
+        <div class="kpi-value" style="${k.small ? 'font-size:16px;letter-spacing:0;' : ''}">${k.value}</div>
+        <div class="kpi-sub">${k.sub}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ============================================================
+     CHART RENDERING
+     ============================================================ */
+  function aggregateSum(rows, keyFn, valFn){
+    const map = new Map();
+    rows.forEach(r => {
+      const k = keyFn(r);
+      map.set(k, (map.get(k)||0) + valFn(r));
+    });
+    return map;
+  }
+  function topN(map, n){
+    return [...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,n);
+  }
+
+  function baseGridColor(){ return getVar('--border-soft'); }
+  function baseTickColor(){ return getVar('--ink-soft'); }
+
+  function renderCharts(rows){
+    if (typeof Chart === 'undefined'){
+      document.querySelectorAll('.chart-canvas-wrap').forEach(el => {
+        el.innerHTML = '<div class="no-results" style="padding:0;">Chart library failed to load. Check your internet connection and reload the page.</div>';
+      });
+      return;
+    }
+    try { renderEngineerChart(rows); } catch(e){ console.error('engineer chart', e); }
+    try { renderProfileChart(rows); } catch(e){ console.error('profile chart', e); }
+    try { renderTrendChart(rows); } catch(e){ console.error('trend chart', e); }
+    try { renderSubmittedChart(rows); } catch(e){ console.error('submitted chart', e); }
+  }
+
+  function destroyIf(key){ if (charts[key]){ charts[key].destroy(); delete charts[key]; } }
+
+  function renderEngineerChart(rows){
+    destroyIf('engineer');
+    const map = aggregateSum(rows, r=>r.engineer, r=>r.prints);
+    const data = topN(map, 8);
+    document.getElementById('tagEngineer').textContent = data.length + ' shown';
+    const ctx = document.getElementById('chartEngineer').getContext('2d');
+    charts.engineer = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(d=>d[0]),
+        datasets: [{
+          label: 'Prints',
+          data: data.map(d=>d[1]),
+          backgroundColor: CMYK.cyan,
+          borderRadius: 4,
+          maxBarThickness: 26
+        }]
+      },
+      options: chartOptions({ indexAxis:'y' })
+    });
+  }
+
+  function renderProfileChart(rows){
+    destroyIf('profile');
+    const map = aggregateSum(rows, r=>r.profile, ()=>1);
+    const data = topN(map, 6);
+    document.getElementById('tagProfile').textContent = data.length + ' profiles';
+    const ctx = document.getElementById('chartProfile').getContext('2d');
+    const palette = [CMYK.cyan, CMYK.magenta, CMYK.yellow, CMYK.teal, getVar('--ink-faint'), getVar('--ink-soft')];
+    charts.profile = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: data.map(d=>d[0]),
+        datasets: [{ data: data.map(d=>d[1]), backgroundColor: palette, borderColor: getVar('--card'), borderWidth: 2 }]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins: {
+          legend: { position:'right', labels:{ color: baseTickColor(), font:{ family:"'Inter',sans-serif", size:11 }, boxWidth:10, padding:10 } },
+          tooltip: tooltipStyle()
+        },
+        cutout: '62%'
+      }
+    });
+  }
+
+  function renderTrendChart(rows){
+    destroyIf('trend');
+    const withDates = rows.filter(r=>r.date);
+    const map = new Map();
+    withDates.forEach(r => {
+      const k = r.date.getFullYear() + '-' + String(r.date.getMonth()+1).padStart(2,'0');
+      map.set(k, (map.get(k)||0) + r.cost);
+    });
+    const keys = [...map.keys()].sort();
+    document.getElementById('tagTrend').textContent = keys.length + ' months';
+    const ctx = document.getElementById('chartTrend').getContext('2d');
+    charts.trend = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: keys.map(k => monthLabel(k)),
+        datasets: [{
+          label: 'Cost',
+          data: keys.map(k=>Math.round(map.get(k)*100)/100),
+          borderColor: CMYK.magenta,
+          backgroundColor: hexToRgba(CMYK.magenta, 0.12),
+          fill: true, tension: 0.3, pointRadius: 2.5, pointBackgroundColor: CMYK.magenta
+        }]
+      },
+      options: chartOptions({})
+    });
+  }
+  function monthLabel(k){
+    const [y,m] = k.split('-');
+    return new Date(y, m-1, 1).toLocaleDateString('en-GB', { month:'short', year:'2-digit' });
+  }
+
+  function renderSubmittedChart(rows){
+    destroyIf('submitted');
+    const map = aggregateSum(rows, r=>r.submittedTo, ()=>1);
+    const data = topN(map, 8);
+    document.getElementById('tagSubmitted').textContent = data.length + ' shown';
+    const ctx = document.getElementById('chartSubmitted').getContext('2d');
+    charts.submitted = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(d=>d[0]),
+        datasets: [{ label:'Requests', data: data.map(d=>d[1]), backgroundColor: CMYK.yellow, borderRadius:4, maxBarThickness:32 }]
+      },
+      options: chartOptions({})
+    });
+  }
+
+  function chartOptions(extra){
+    return Object.assign({
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ display:false }, tooltip: tooltipStyle() },
+      scales: {
+        x: { grid:{ color: baseGridColor(), drawTicks:false }, ticks:{ color: baseTickColor(), font:{ family:"'JetBrains Mono',monospace", size:10.5 } } },
+        y: { grid:{ color: baseGridColor(), drawTicks:false }, ticks:{ color: baseTickColor(), font:{ family:"'JetBrains Mono',monospace", size:10.5 } } }
+      }
+    }, extra);
+  }
+  function tooltipStyle(){
+    return {
+      backgroundColor: getVar('--card'),
+      titleColor: getVar('--ink'),
+      bodyColor: getVar('--ink-soft'),
+      borderColor: getVar('--border'),
+      borderWidth: 1,
+      padding: 10,
+      titleFont: { family:"'Inter',sans-serif", weight:600, size:12 },
+      bodyFont: { family:"'JetBrains Mono',monospace", size:11.5 }
+    };
+  }
+  function hexToRgba(hex, alpha){
+    hex = hex.replace('#','');
+    if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+    const num = parseInt(hex,16);
+    const r = (num>>16)&255, g=(num>>8)&255, b=num&255;
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+  function refreshChartColors(){
+    CMYK.cyan = getVar('--cyan'); CMYK.magenta = getVar('--magenta');
+    CMYK.yellow = getVar('--yellow'); CMYK.teal = getVar('--teal');
+    CMYK.ink = getVar('--ink'); CMYK.inkSoft = getVar('--ink-soft');
+    if (rawRows.length) renderCharts(filteredRows);
+  }
+
+  /* ============================================================
+     TABLE RENDERING
+     ============================================================ */
+  function renderTable(){
+    updateSortArrows();
+    const total = filteredRows.length;
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage-1)*PAGE_SIZE;
+    const pageRows = filteredRows.slice(start, start+PAGE_SIZE);
+
+    const tbody = document.getElementById('tableBody');
+    if (!pageRows.length){
+      tbody.innerHTML = `<tr><td colspan="8" class="no-results">No records match your filters.</td></tr>`;
+    } else {
+      tbody.innerHTML = pageRows.map(r => `
+        <tr>
+          <td class="mono">${formatDate(r.date)}</td>
+          <td>${escapeHTML(r.profile)}</td>
+          <td>${escapeHTML(r.whoAsked)}</td>
+          <td class="num">${formatInt(r.prints)}</td>
+          <td><span class="pill">${escapeHTML(r.engineer)}</span></td>
+          <td class="remarks-cell">${escapeHTML(r.remarks) || '—'}</td>
+          <td>${escapeHTML(r.submittedTo)}</td>
+          <td class="num">${formatCurrency(r.cost)}</td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('resultCount').textContent =
+      total ? `Showing ${start+1}–${Math.min(start+PAGE_SIZE,total)} of ${total} records` : 'No records';
+
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages){
+    const el = document.getElementById('pagination');
+    let html = `<button class="page-btn" id="pgPrev" ${currentPage===1?'disabled':''}>‹</button>`;
+    const windowSize = 5;
+    let startP = Math.max(1, currentPage - Math.floor(windowSize/2));
+    let endP = Math.min(totalPages, startP + windowSize - 1);
+    startP = Math.max(1, endP - windowSize + 1);
+    for (let p = startP; p <= endP; p++){
+      html += `<button class="page-btn ${p===currentPage?'active':''}" data-page="${p}">${p}</button>`;
+    }
+    html += `<button class="page-btn" id="pgNext" ${currentPage===totalPages?'disabled':''}>›</button>`;
+    el.innerHTML = html;
+    el.querySelectorAll('[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => { currentPage = parseInt(btn.dataset.page,10); renderTable(); });
+    });
+    const prev = document.getElementById('pgPrev'), next = document.getElementById('pgNext');
+    if (prev) prev.addEventListener('click', () => { if (currentPage>1){ currentPage--; renderTable(); } });
+    if (next) next.addEventListener('click', () => { if (currentPage<totalPages){ currentPage++; renderTable(); } });
+  }
+
+  /* ============================================================
+     EXPORT
+     ============================================================ */
+  function exportCSV(){
+    if (!filteredRows.length){ alert('No rows to export for the current view.'); return; }
+    const headers = ['Date','Profile','Who Asked','No of Prints','Engineer_Name','Remarks','Submitted To','Cost'];
+    const lines = [headers.join(',')];
+    filteredRows.forEach(r => {
+      const vals = [
+        r.date ? r.date.toISOString().slice(0,10) : r.dateRaw,
+        r.profile, r.whoAsked, r.prints, r.engineer, r.remarks, r.submittedTo, r.cost
+      ].map(csvEscape);
+      lines.push(vals.join(','));
+    });
+    const blob = new Blob([lines.join('\n')], { type:'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'trah-print-log-filtered.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  function csvEscape(v){
+    v = String(v ?? '');
+    if (/[",\n]/.test(v)) return '"' + v.replace(/"/g,'""') + '"';
+    return v;
+  }
+
+  /* ============================================================
+     UTIL
+     ============================================================ */
+  function escapeHTML(str){
+    if (str === null || str === undefined) return '';
+    return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function escapeAttr(str){ return escapeHTML(str); }
+
+})();
+</script>
+</body>
+</html>
