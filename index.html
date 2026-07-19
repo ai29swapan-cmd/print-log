@@ -224,45 +224,44 @@ button{font-family:var(--font-body);cursor:pointer;}
 /* ---------- Current month strip ---------- */
 .month-strip{
   display:flex;align-items:stretch;flex-wrap:wrap;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-left:4px solid var(--cyan);
-  border-radius:var(--radius);
+  gap:12px;
   margin-bottom:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
 }
 .month-strip-label{
   font-family:var(--font-display);font-weight:700;font-size:13px;
   text-transform:uppercase;letter-spacing:.6px;color:var(--ink);
   display:flex;align-items:center;gap:8px;flex:none;
   padding:14px 20px;
-  background:var(--paper);
-  border-right:1px solid var(--border-soft);
+  background:var(--card);
+  border:1px solid var(--border);
+  border-left:4px solid var(--cyan);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
 }
 .month-strip-label .dot{
   width:7px;height:7px;border-radius:50%;background:var(--cyan);flex:none;
   box-shadow:0 0 0 3px color-mix(in srgb, var(--cyan) 20%, transparent);
 }
-.month-strip-stats{display:flex;flex-wrap:wrap;flex:1;}
+.month-strip-stats{display:flex;flex-wrap:wrap;flex:1;gap:12px;}
 .month-stat{
   display:flex;flex-direction:column;gap:4px;
-  padding:12px 22px;
+  padding:14px 22px 12px;
   min-width:110px;
-  border-right:1px solid var(--border-soft);
+  flex:1;
   justify-content:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
 }
-.month-stat:last-child{border-right:none;}
-.month-stat .m-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-faint);font-weight:600;}
-.month-stat .m-value{font-family:var(--font-mono);font-weight:700;font-size:19px;letter-spacing:-.3px;color:var(--ink);}
+.month-stat .m-label{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);font-weight:600;}
+.month-stat .m-value{font-family:var(--font-mono);font-weight:700;font-size:24px;letter-spacing:-.5px;color:var(--ink);}
 .month-stat.c-cyan .m-value{color:var(--cyan);}
 .month-stat.c-magenta .m-value{color:var(--magenta);}
 .month-stat.c-teal .m-value{color:var(--teal);}
 
 @media (max-width:640px){
-  .month-strip{flex-direction:column;border-left:none;border-top:4px solid var(--cyan);}
-  .month-strip-label{border-right:none;border-bottom:1px solid var(--border-soft);}
-  .month-stat{border-right:none;border-bottom:1px solid var(--border-soft);}
+  .month-strip{flex-direction:column;}
 }
 
 /* ---------- Charts grid ---------- */
@@ -901,7 +900,6 @@ footer.credits{
     const reqs = monthRows.length;
     const prints = monthRows.reduce((s,r)=>s+r.prints,0);
     const cost = monthRows.reduce((s,r)=>s+r.cost,0);
-    const engineers = new Set(monthRows.map(r=>r.engineer)).size;
 
     document.getElementById('monthStrip').innerHTML = `
       <div class="month-strip-label">
@@ -915,7 +913,6 @@ footer.credits{
         <div class="month-stat"><span class="m-label">Requests</span><span class="m-value">${formatInt(reqs)}</span></div>
         <div class="month-stat c-cyan"><span class="m-label">Prints</span><span class="m-value">${formatInt(prints)}</span></div>
         <div class="month-stat c-magenta"><span class="m-label">Cost</span><span class="m-value">${formatCurrency(cost)}</span></div>
-        <div class="month-stat c-teal"><span class="m-label">Engineers</span><span class="m-value">${formatInt(engineers)}</span></div>
       </div>
     `;
   }
