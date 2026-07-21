@@ -1,92 +1,174 @@
-ID,Date,Profile,Who Asked,Prints,Engineer,Remarks,Submitted To
-e7f58167-b954-4fbb-bb45-d7c0a86b71b8,08/06/2026,Pink_SNP,RESPONSE,2,Rajesh Kumar ,Renew i5 creative,Pankaj Soni
-19b72896-a823-47ce-af43-a4c9bfe71c37,11/06/2026,White_SNP,RESPONSE,5,Rajiv Srivastava,Breast Cancer,Sachin Malik (Response)
-bacf6463-1ede-4caa-b5e3-628d211e1ddd,11/06/2026,White_SNP,RESPONSE,4,Rajiv / Rajesh,MINI COUNTRYMAN SUV,Amit Maheshwari 
-97fba812-d7fd-4770-8c84-464f02bb3176,11/06/2026,White_SNP,RESPONSE,1,Rajiv Srivastava ,lBMW MINI,Amit Maheshwari 
-baa3bed7-c2af-4586-b05d-8c5c4ad519bc,11/06/2026,White_SNP,RESPONSE,5,Shubham Garg,Daawat Artwork for Fragance,Amit Maheshwari
-5905bf58-5613-4832-b0bc-1896af6c9774,12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-33bfe9fe-fa81-4f09-8f6a-a94869711c2b,12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-eaed585c-4e42-4b96-8a82-79540945d7f4,19/06/2026,White_SNP,SAHIBABAD PRESS,2,Braja/Rajesh ,Dawat Rice ,press 
-50a7edd5-5ec0-403f-b8dc-e690984b81a1,19/06/2026,White_SNP,SAHIBABAD PRESS,4,Rajesh Kumar ,Dawat jacket ,Arvind Patel 
-6ff03f17-9a6a-457e-b155-10b3b32855f6,24/06/2026,White_SNP,RESPONSE,2,Shubhendu,Hero vida,Amit maheshwari
-d4d41df6-9dbc-4128-b2e9-9cfd1d8c09f0,25/06/2026,White_SNP,RESPONSE (MUMBAI),1,Swapan Sardar,Powerade March 2026,Prashant Amritwar
-779b9cbd-9869-4e57-bec1-2fd0dc025dde,26/06/2026,White_SNP,RESPONSE,2,Shubhendu & Swapan,HILTON print campaign -creatives on the ET and TOI front page.,Pankaj Soni
-320e6b92-ab69-401a-af89-693678c135a3,26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-0ea837e6-a12f-43d4-93a1-0ffc4cb8bdb3,26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-16b43cec-ef37-4387-9417-828f29af7539,01/07/2026,White_SNP,RESPONSE,5,Braja/Shubhendu,Dawat Rice ,Amit Maheshwari 
-e356bd04-569b-4052-b8b3-25a2a7f3fd5a,02/07/2026,White_SNP,RESPONSE,1,Shubham Garg,RE: Biryani Fragrance Innovation: Daawat Rice,Saloni Sharma
-d7035199-1a31-4f4c-9f9a-2f68f912919c,03/07/2026,White_SNP,RESPONSE,2,Swapan Sardar,Biryani Fragrance Innovation: Daawat Rice,Nigarish Anwar
-34013340-680e-4838-8dc0-122a87a0d694,04/07/2026,White_SNP,Tanmoy Das,5,Swapan Sardar,AI Video pages,Technical Director
-231484f8-db2f-49d7-922e-0618aa5ff720,06/07/2026,White_SNP,Shubhankar Nandi,5,S N Jha,,
-c899369f-d4a3-4619-9788-2802157081d5,07/07/2026,White_SNP,RESPONSE,2,swapan,Test,Test
-e7f58167-b954-4fbb-bb45-d7c0a86b71b8,08/06/2026,Pink_SNP,RESPONSE,2,Rajesh Kumar ,Renew i5 creative,Pankaj Soni
-19b72896-a823-47ce-af43-a4c9bfe71c37,11/06/2026,White_SNP,RESPONSE,5,Rajiv Srivastava,Breast Cancer,Sachin Malik (Response)
-bacf6463-1ede-4caa-b5e3-628d211e1ddd,11/06/2026,White_SNP,RESPONSE,4,Rajiv / Rajesh,MINI COUNTRYMAN SUV,Amit Maheshwari 
-97fba812-d7fd-4770-8c84-464f02bb3176,11/06/2026,White_SNP,RESPONSE,1,Rajiv Srivastava ,lBMW MINI,Amit Maheshwari 
-baa3bed7-c2af-4586-b05d-8c5c4ad519bc,11/06/2026,White_SNP,RESPONSE,5,Shubham Garg,Daawat Artwork for Fragance,Amit Maheshwari
-5905bf58-5613-4832-b0bc-1896af6c9774,12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-33bfe9fe-fa81-4f09-8f6a-a94869711c2b,12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-eaed585c-4e42-4b96-8a82-79540945d7f4,19/06/2026,White_SNP,SAHIBABAD PRESS,2,Braja/Rajesh ,Dawat Rice ,press 
-50a7edd5-5ec0-403f-b8dc-e690984b81a1,19/06/2026,White_SNP,SAHIBABAD PRESS,4,Rajesh Kumar ,Dawat jacket ,Arvind Patel 
-6ff03f17-9a6a-457e-b155-10b3b32855f6,24/06/2026,White_SNP,RESPONSE,2,Shubhendu,Hero vida,Amit maheshwari
-d4d41df6-9dbc-4128-b2e9-9cfd1d8c09f0,25/06/2026,White_SNP,RESPONSE (MUMBAI),1,Swapan Sardar,Powerade March 2026,Prashant Amritwar
-779b9cbd-9869-4e57-bec1-2fd0dc025dde,26/06/2026,White_SNP,RESPONSE,2,Shubhendu & Swapan,HILTON print campaign -creatives on the ET and TOI front page.,Pankaj Soni
-320e6b92-ab69-401a-af89-693678c135a3,26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-0ea837e6-a12f-43d4-93a1-0ffc4cb8bdb3,26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-16b43cec-ef37-4387-9417-828f29af7539,01/07/2026,White_SNP,RESPONSE,5,Braja/Shubhendu,Dawat Rice ,Amit Maheshwari 
-e356bd04-569b-4052-b8b3-25a2a7f3fd5a,02/07/2026,White_SNP,RESPONSE,1,Shubham Garg,RE: Biryani Fragrance Innovation: Daawat Rice,Saloni Sharma
-d7035199-1a31-4f4c-9f9a-2f68f912919c,03/07/2026,White_SNP,RESPONSE,2,Swapan Sardar,Biryani Fragrance Innovation: Daawat Rice,Nigarish Anwar
-34013340-680e-4838-8dc0-122a87a0d694,04/07/2026,White_SNP,Tanmoy Das,5,Swapan Sardar,AI Video pages,Technical Director
-231484f8-db2f-49d7-922e-0618aa5ff720,06/07/2026,White_SNP,Shubhankar Nandi,5,S N Jha,,
-e7f58167-b954-4fbb-bb45-d7c0a86b71b8,08/06/2026,Pink_SNP,RESPONSE,2,Rajesh Kumar ,Renew i5 creative,Pankaj Soni
-19b72896-a823-47ce-af43-a4c9bfe71c37,11/06/2026,White_SNP,RESPONSE,5,Rajiv Srivastava,Breast Cancer,Sachin Malik (Response)
-bacf6463-1ede-4caa-b5e3-628d211e1ddd,11/06/2026,White_SNP,RESPONSE,4,Rajiv / Rajesh,MINI COUNTRYMAN SUV,Amit Maheshwari 
-97fba812-d7fd-4770-8c84-464f02bb3176,11/06/2026,White_SNP,RESPONSE,1,Rajiv Srivastava ,lBMW MINI,Amit Maheshwari 
-baa3bed7-c2af-4586-b05d-8c5c4ad519bc,11/06/2026,White_SNP,RESPONSE,5,Shubham Garg,Daawat Artwork for Fragance,Amit Maheshwari
-5905bf58-5613-4832-b0bc-1896af6c9774,12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-33bfe9fe-fa81-4f09-8f6a-a94869711c2b,12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-eaed585c-4e42-4b96-8a82-79540945d7f4,19/06/2026,White_SNP,SAHIBABAD PRESS,2,Braja/Rajesh ,Dawat Rice ,press 
-50a7edd5-5ec0-403f-b8dc-e690984b81a1,19/06/2026,White_SNP,SAHIBABAD PRESS,4,Rajesh Kumar ,Dawat jacket ,Arvind Patel 
-6ff03f17-9a6a-457e-b155-10b3b32855f6,24/06/2026,White_SNP,RESPONSE,2,Shubhendu,Hero vida,Amit maheshwari
-d4d41df6-9dbc-4128-b2e9-9cfd1d8c09f0,25/06/2026,White_SNP,RESPONSE (MUMBAI),1,Swapan Sardar,Powerade March 2026,Prashant Amritwar
-779b9cbd-9869-4e57-bec1-2fd0dc025dde,26/06/2026,White_SNP,RESPONSE,2,Shubhendu & Swapan,HILTON print campaign -creatives on the ET and TOI front page.,Pankaj Soni
-320e6b92-ab69-401a-af89-693678c135a3,26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-0ea837e6-a12f-43d4-93a1-0ffc4cb8bdb3,26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-16b43cec-ef37-4387-9417-828f29af7539,01/07/2026,White_SNP,RESPONSE,5,Braja/Shubhendu,Dawat Rice ,Amit Maheshwari 
-e356bd04-569b-4052-b8b3-25a2a7f3fd5a,02/07/2026,White_SNP,RESPONSE,1,Shubham Garg,RE: Biryani Fragrance Innovation: Daawat Rice,Saloni Sharma
-d7035199-1a31-4f4c-9f9a-2f68f912919c,03/07/2026,White_SNP,RESPONSE,2,Swapan Sardar,Biryani Fragrance Innovation: Daawat Rice,Nigarish Anwar
-34013340-680e-4838-8dc0-122a87a0d694,04/07/2026,White_SNP,Tanmoy Das,5,Swapan Sardar,AI Video pages,Technical Director
-231484f8-db2f-49d7-922e-0618aa5ff720,06/07/2026,White_SNP,Shubhankar Nandi,5,S N Jha,,
-9fa9e34f-441f-4090-b4d1-9c4a935d7a36,07/07/2026,White_SNP,RESPONSE,5,Swapan,Test,Test
-8844be90-02ac-4787-9d39-fe7f1e0dbba5,07/07/2026,White_SNP,RESPONSE,10,Test,Test,Test
-c7c98f76-b05b-4153-9d8f-5e614f308920,07/07/2026,White_SNP,RESPONSE,1,Rajesh Kumar ,Renault Duster adventure ,Nigarish Anwar 
-9532748b-f898-4311-9ab1-195aa53407f5,07/07/2026,White_SNP,RESPONSE,3,Atul Srivastava ,Maggi Proof ,Nigarish Anwar 
-8f693424-342e-4ebc-9ed8-2b4600a6f243,08-जुल॰-2026,White_SNP,RESPONSE,5,swapan ,Test,Test
-b3294a75-7595-4191-af07-ba1f3b9ee8d5,08-जुल॰-2026,White_SNP,RESPONSE,5,swapan,test,test
-36291152-5b62-48e3-ac4e-31a159946971,08-जुल॰-2026,White_SNP,RESPONSE,5,Test,Test,Test 
-e7f58167-b954-4fbb-bb45-d7c0a86b71b8,08-जून-2026,Pink_SNP,RESPONSE,2,Rajesh Kumar ,Renew i5 creative,Pankaj Soni
-19b72896-a823-47ce-af43-a4c9bfe71c37,11-जून-2026,White_SNP,RESPONSE,5,Rajiv Srivastava,Breast Cancer,Sachin Malik (Response)
-bacf6463-1ede-4caa-b5e3-628d211e1ddd,11-जून-2026,White_SNP,RESPONSE,4,Rajiv / Rajesh,MINI COUNTRYMAN SUV,Amit Maheshwari 
-97fba812-d7fd-4770-8c84-464f02bb3176,11-जून-2026,White_SNP,RESPONSE,1,Rajiv Srivastava ,lBMW MINI,Amit Maheshwari 
-baa3bed7-c2af-4586-b05d-8c5c4ad519bc,11-जून-2026,White_SNP,RESPONSE,5,Shubham Garg,Daawat Artwork for Fragance,Amit Maheshwari
-5905bf58-5613-4832-b0bc-1896af6c9774,12-जून-2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-33bfe9fe-fa81-4f09-8f6a-a94869711c2b,12-जून-2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava ,Bonds,Amit Maheshwari
-eaed585c-4e42-4b96-8a82-79540945d7f4,19-जून-2026,White_SNP,SAHIBABAD PRESS,2,Braja/Rajesh ,Dawat Rice ,press 
-50a7edd5-5ec0-403f-b8dc-e690984b81a1,19-जून-2026,White_SNP,SAHIBABAD PRESS,4,Rajesh Kumar ,Dawat jacket ,Arvind Patel 
-6ff03f17-9a6a-457e-b155-10b3b32855f6,24-जून-2026,White_SNP,RESPONSE,2,Shubhendu,Hero vida,Amit maheshwari
-d4d41df6-9dbc-4128-b2e9-9cfd1d8c09f0,25-जून-2026,White_SNP,RESPONSE (MUMBAI),1,Swapan Sardar,Powerade March 2026,Prashant Amritwar
-779b9cbd-9869-4e57-bec1-2fd0dc025dde,26-जून-2026,White_SNP,RESPONSE,2,Shubhendu & Swapan,HILTON print campaign -creatives on the ET and TOI front page.,Pankaj Soni
-320e6b92-ab69-401a-af89-693678c135a3,26-जून-2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-0ea837e6-a12f-43d4-93a1-0ffc4cb8bdb3,26-जून-2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit 
-16b43cec-ef37-4387-9417-828f29af7539,01-जुल॰-2026,White_SNP,RESPONSE,5,Braja/Shubhendu,Dawat Rice ,Amit Maheshwari 
-e356bd04-569b-4052-b8b3-25a2a7f3fd5a,02-जुल॰-2026,White_SNP,RESPONSE,1,Shubham Garg,RE: Biryani Fragrance Innovation: Daawat Rice,Saloni Sharma
-d7035199-1a31-4f4c-9f9a-2f68f912919c,03-जुल॰-2026,White_SNP,RESPONSE,2,Swapan Sardar,Biryani Fragrance Innovation: Daawat Rice,Nigarish Anwar
-34013340-680e-4838-8dc0-122a87a0d694,04-जुल॰-2026,White_SNP,Tanmoy Das,5,Swapan Sardar,AI Video pages,Technical Director
-231484f8-db2f-49d7-922e-0618aa5ff720,06-जुल॰-2026,White_SNP,Shubhankar Nandi,5,S N Jha,,
-f802bb66-de2c-4359-a8e8-684bb5fb440c,07-जुल॰-2026,White_SNP,RESPONSE,1,Rajesh Kumar ,Orange health lab,Nigarish Anwar
-3be2797f-184a-4f20-a6f0-762cfd29846e,07-जुल॰-2026,White_SNP,RESPONSE,1,Rajesh Kumar ,Orange health lab,Nigarish Anwar
-c7c98f76-b05b-4153-9d8f-5e614f308920,07-जुल॰-2026,White_SNP,RESPONSE,2,Rajesh Kumar ,Renault Duster adventure ,Nigarish Anwar 
-9532748b-f898-4311-9ab1-195aa53407f5,07-जुल॰-2026,White_SNP,RESPONSE,3,Atul Srivastava ,Maggi Proof ,Nigarish Anwar 
-fd7bfa33-2722-495c-bc48-61d8948ddfa0,14-जुल॰-2026,Pink_SNP,RESPONSE,2,Rajiv/ Barinder,Air India,Amit Maheshwari 
-a8fa4462-562c-4759-90fa-ed8ca2e8c882,15-जुल॰-2026,White_SNP,RESPONSE,6,Shubham Garg,Nothing Mobile - SNP Proofing ,Amit Maheshwari
-2e716d74-cc14-4c2f-b42b-befa6f82488d,17-जुल॰-2026,White_SNP,RESPONSE,3,Atul/Shubhendu/Swapan,Maggi Layouts,Amit Maheshwari
+Date,Profile,Who Asked,No of Prints,Engineer_Name,Remarks,Submitted To,Cost  
+02/05/2025,White_SNP,RESPONSE,2,Rahul Jain,Advt :CMF Nothing Mobile,,4000
+02/05/2025,White_SNP,RESPONSE,2,Rahul Jain,Advt :CMF Nothing Mobile-Option 2,,4000
+09/05/2025,White_SNP,RESPONSE,2,Rajiv Srivastava,Advt : MG Motor,,4000
+09/05/2025,Pink_SNP,RESPONSE,2,Rajiv Srivastava,Advt : MG Motor,,4000
+14/05/2025,White_SNP,RESPONSE,2,Braja Sukla,Advt : KIA INDIA,,4000
+15/05/2025,White_SNP,RESPONSE,2,Braja Sukla,Advt : Leverage Education,,4000
+18/05/2025,White_SNP,RESPONSE,1,Braja Sukla,Advt : Revised creative of Leverage Education,,2000
+22/05/2025,White_SNP,RESPONSE,1,Braja Sukla,DLF color patch proofing,,2000
+22/05/2025,Pink_SNP,RESPONSE,1,Braja Sukla,DLF color patch proofing,,2000
+26/05/2025,Pink_SNP,RESPONSE,1,Swapan Sardar,Ambition box ,,2000
+26/05/2025,Pink_SNP,RESPONSE,2,Braja Sukla,Advt : Longines   creative  ( 2 Pages ),,4000
+27/05/2025,White_SNP,B & C,8,Swapan Sardar,C-07-Y-11 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,16000
+27/05/2025,Pink_SNP,RESPONSE,1,Satyveer Singh,Air India,,2000
+30/05/2025,White_SNP,RESPONSE,1,Swapan Sardar,29052025_cap_mp_01_2_col_r1,,2000
+30/05/2025,White_SNP,RESPONSE,1,Swapan Sardar,29052025_cap_mp_23_1_col_r1,,2000
+30/05/2025,White_SNP,RESPONSE,2,Swapan Sardar,CQC_TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+30/05/2025,White_SNP,RESPONSE,2,Swapan Sardar,CQC_TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+30/05/2025,White_SNP,RESPONSE,2,Swapan Sardar,TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+30/05/2025,White_SNP,RESPONSE,2,Swapan Sardar,TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,29052025_cap_mp_01_2_col_r1,,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,29052025_cap_mp_23_1_col_r1,,2000
+31/05/2025,Green_SNP,RESPONSE,2,Braja Sukla,CQC_TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+31/05/2025,Green_SNP,RESPONSE,2,Braja Sukla,CQC_TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+31/05/2025,Green_SNP,RESPONSE,2,Braja Sukla,TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+31/05/2025,Green_SNP,RESPONSE,2,Braja Sukla,TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),,4000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,Waste (torned),,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,CQC_TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Mumbai Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,CQC_TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Mumbai Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Mumbai Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Mumbai Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,CQC_TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Bangalore Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,CQC_TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Bangalore Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,TOI_Full_Page Ad_Front_Page_32.8x48cm (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Bangalore Response,2000
+31/05/2025,Green_SNP,RESPONSE,1,Braja Sukla,TOI_Full_Page Ad_Inside_page_32.8x52.4 (Mr. Prashant from Mumbai for Mr  LVM Kishore B & C),For  Bangalore Response,2000
+03/06/2025,White_SNP,RESPONSE,1,Shubham Garg,Sanpdragon with Special Masthead ,Need to check,2000
+24/06/2025,White_SNP,RESPONSE,2,Swapan Sardar,Happy Dent_1,,4000
+24/06/2025,White_SNP,RESPONSE,2,Swapan Sardar,Happy Dent_2,,4000
+24/06/2025,White_SNP,RESPONSE,2,Rajiv Srivastava,AD_32.8x47_CM_Bangalore_.eps  and AD_32.8x48_CM_Delhi_.eps,Amit Maheshwari,4000
+24/06/2025,White_SNP,RESPONSE,2,Satyveer Singh,Happy Dent ET-final,Prashant sent creative for Proofer print for Ripan Preeet,4000
+28/06/2025,White_SNP,SAHIBABAD PRESS,5,Braja Sukla,Sample PDF for Fragrance testing  (Sahibabad press),Ravi Sani  sent creativ,10000
+04/07/2025,White_SNP,RESPONSE,2,Braja Sukla,Zomato Ad.,Amit Maheshwari,4000
+05/07/2025,White_SNP,RESPONSE,1,Rajiv/Swapan,BMW,Pankaj Soni ,2000
+14/07/2025,Pink_SNP,RESPONSE,1,Satyveer Singh,KIA Ad,Amit Maheshwari,2000
+14/07/2025,White_SNP,RESPONSE,1,Satyveer Singh,KIA Ad,Amit Maheshwari,2000
+19/07/2025,White_SNP,RESPONSE,2,Braja Sukla,VIDA Ad,Amit Maheshwari,4000
+22/07/2025,White_SNP,RESPONSE,1,Braja Sukla,Zomato Ad.,Amit Maheshwari,2000
+23/07/2025,White_SNP,RESPONSE,3,Swapan Sardar,VIDA Ad,Amit Maheshwari,6000
+24/07/2025,White_SNP,RESPONSE,1,Swapan Sardar,VIDA Ad,Amit Maheshwari,2000
+28/07/2025,White_SNP,RESPONSE,1,Swapan Sardar,Vin Fast,Amit Maheshwari,2000
+28/07/2025,White_SNP,RESPONSE,1,Swapan Sardar,VIVO_page1,Amit Maheshwari,2000
+28/07/2025,White_SNP,RESPONSE,1,Swapan Sardar,VIVO_Page_2,Amit Maheshwari,2000
+30/07/2025,White_SNP,RESPONSE,2,Braja Sukla,Google Pixel Ad,Pankaj Soni ,4000
+31/07/2025,Pink_SNP,RESPONSE,1,Braja / Swapan,Barclays Ad,Amit Maheshwari,2000
+31/07/2025,White_SNP,RESPONSE,2,Braja Sukla,BMW Ad,Amit Maheshwari,4000
+01/09/2025,Pink_SNP,RESPONSE,1,Swapan Sardar,Dummy,Amit Maheshwari,2000
+04/09/2025,Pink_SNP,RESPONSE,2,Swapan Sardar,HSBC,Amit Maheshwari,4000
+16/09/2025,White_SNP,RESPONSE,2,Barinder,Nestle,Amit Maheshwari,4000
+18/09/2025,White_SNP,RESPONSE,5,Braja / Swapan,Nestle/SBI,Amit Maheshwari,10000
+19/09/2025,White_SNP,RESPONSE,2,Swapan Sardar,SBI,Pankaj Soni ,4000
+22/09/2025,White_SNP,RESPONSE,2,Rajesh Kumar,Boat,Amit Maheshwari,4000
+23/09/2025,White_SNP,RESPONSE (MUMBAI),6,Braja Sukla,Maggi,Mr Palak,12000
+23/09/2025,White_SNP,RESPONSE,4,Braja Sukla,Maruti,Amit Maheshwari,8000
+23/09/2025,White_SNP,RESPONSE,4,Rajesh Kumar,Maruti,Amit Maheshwari,8000
+24/09/2025,White_SNP,RESPONSE,5,Braja Sukla,Maruti,Amit Maheshwari,10000
+25/09/2025,White_SNP,RESPONSE,3,Braja Sukla,Maruti,Pankaj Soni ,6000
+26/09/2025,White_SNP,RESPONSE,2,Rajiv Srivastava,Maruti,Pankaj Soni ,4000
+26/09/2025,White_SNP,RESPONSE,2,Rajiv Srivastava,Sniker,Amit Maheshwari,4000
+27/09/2025,White_SNP,RESPONSE,2,Rajesh Kumar,Livarage Edu,Amit Maheshwari,4000
+03/10/2025,White_SNP,RESPONSE,2,Braja / Swapan,Pernod Ricard India Lvt lt,Amit Maheshwari,4000
+03/10/2025,White_SNP,RESPONSE,5,Braja / Swapan,Dettol Line cool Fragrance,Amit Maheshwari,10000
+03/10/2025,White_SNP,RESPONSE,1,Rajesh Kumar,ITC Hotel Ltd,Amit Maheshwari,2000
+06/10/2025,Pink_SNP,RESPONSE,4,S N Jha,Hindware,Pankaj Soni ,8000
+06/10/2025,White_SNP,RESPONSE (MUMBAI),2,S N Jha,Dettol Line cool Fragrance,Ravi Saini ,4000
+08/10/2025,Pink_SNP,RESPONSE,1,Shubham & Braja Sukla,Hindware,Pankaj Soni ,2000
+08/10/2025,White_SNP,RESPONSE,1,Rajiv Srivastava,Sony center,Amit Maheshwari,2000
+13/10/2025,White_SNP,RESPONSE,2,Shubham Garg,D S Group,Pankaj Soni ,4000
+03/11/2025,White_SNP,RESPONSE,12,S N Jha/ Braja sukla,Sensodyne Toothpaste ( F.W),Amit Maheshwari,24000
+05/11/2025,White_SNP,RESPONSE,8,S N Jha/ Braja sukla,Sensodyne Toothpaste ( F.W),Amit Maheshwari,16000
+05/11/2025,Pink_SNP,RESPONSE,1,S N Jha/ Braja sukla,Dummy,Amit Maheshwari,2000
+10/11/2025,White_SNP,RESPONSE (MUMBAI),6,S N Jha/ Braja sukla,"Otrivin (1 was Pano) so, it will be 6 pages",P. Sarath,12000
+14/11/2025,White_SNP,SAHIBABAD PRESS,4,S N Jha/ Braja sukla,Maggi,Rajesh Agarwal,8000
+15/11/2025,White_SNP,SAHIBABAD PRESS,2,S N Jha/ Swapan Sardar,,Rajesh Agarwal,4000
+15/11/2025,White_SNP,SAHIBABAD PRESS,6,Shubham/ Braja sukla,Maggi Innovation with TOI Masthead in FP,Rajesh Agarwal,12000
+18/11/2025,White_SNP,RESPONSE,2,Shubham Garg,Heritage international Experiential School,Amit Maheshwari,4000
+18/11/2025,Pink_SNP,RESPONSE,2,Shubham Garg,Heritage international Experiential School,Amit Maheshwari,4000
+19/11/2025,White_SNP,RESPONSE,4,Barinder Singh,Maggi Innovation with TOI Masthead in FP,Palak Maheshwari,8000
+20/11/2025,White_SNP,RESPONSE,12,S N Jha/ Braja sukla,Otrivin (2 FW ) ,Amit Maheshwari,24000
+21/11/2025,White_SNP,RESPONSE,10,S N Jha/ Braja sukla,Sensodyne Toothpaste ( F.W),Amit Maheshwari,20000
+08/12/2025,Pink_SNP,RESPONSE,2,Barinder/Rajiv,Air India,Pankaj Soni,4000
+08/12/2025,Pink_SNP,RESPONSE,1,Satyveer Singh,KIA Seltos,Pankaj Soni,2000
+08/12/2025,White_SNP,RESPONSE,3,Satyveer Singh,KIA Seltos,Pankaj Soni,6000
+11/12/2025,Pink_SNP,RESPONSE,2,Shubham Garg,RE: Swatch Group - RADO,Pankaj Soni,4000
+12/12/2025,White_SNP,RESPONSE,2,S N Jha/ Braja sukla,RE: Swatch Group - RADO,Pankaj Soni,4000
+16/12/2025,White_SNP,RESPONSE,6,Barinder,DLF Mall Creative,Amit Maheshwari,12000
+19/12/2025,White_SNP,RESPONSE,2,Satyveer Singh,DS Group,Amit Maheshwari,4000
+23/12/2025,Pink_SNP,RESPONSE,1,Satyveer Singh,Rado,Amit Maheshwari,2000
+25/12/2025,White_SNP,RESPONSE,4,Braja Sukla,Addidas,Amit Maheshwari,8000
+01/01/2026,White_SNP,RESPONSE,2,Shubham/Barinder,Nanavati Max_Mumbai Mirror Ad,Amit Maheshwari,4000
+17/01/2026,White_SNP,SAHIBABAD PRESS,6,Rajiv Srivastava,Blinkit Fragrance ad Innovation,Ravi Saini,12000
+29/01/2026,White_SNP,EDITORIAL-TOI,2,Rajiv Srivastava,Budget,Ram & Karthik,4000
+29/01/2026,White_SNP,EDITORIAL-TOI,3,S N Jha,Budget,Ram & Karthik,6000
+30/01/2026,White_SNP,RESPONSE,1,S N Jha/ Braja sukla,Mother Dairy,Saloni sharma,2000
+31/01/2026,Pink_SNP,EDITORIAL-ET,2,Swapan/Rahul,Budget Page1,Zahid Ali Mir,4000
+01/02/2026,Pink_SNP,EDITORIAL-ET,1,Rahul Jain,Budget Page1,Zahid Ali Mir,2000
+01/02/2026,White_SNP,EDITORIAL-TOI,1,Rahul Jain,Budget Page1,Jojo,2000
+03/02/2026,White_SNP,RESPONSE,1,Vivek/Swapan,Harley-Davidson artwork,Amit Maheshwari,2000
+06/02/2026,White_SNP,RESPONSE,1,Barinder/Anil,Maruit suzuki artwork,Amit Maheshwari,2000
+09/02/2026,White_SNP,Proof's for TD,3,Swapan Sardar,2D-3D layout,Tanmoy Das,6000
+12/02/2026,White_SNP,EDITORIAL-TOI,2,Swapan/Rajiv,Pink layout,Rahul Jain,4000
+13/02/2026,White_SNP,RESPONSE,2,Swapan/Braja,Mother Dairy,Pankaj Soni,4000
+14/02/2026,White_SNP,RESPONSE,8,Braja Sukla,Air India/ Maruti Suzuki ,Amit Maheshwari,16000
+14/02/2026,Pink_SNP,RESPONSE,4,Braja Sukla,Air India,Amit Maheshwari,8000
+17/02/2026,White_SNP,SAHIBABAD PRESS,13,Barinder,Proof's for Technical Director,Tanmoy Das,26000
+19/02/2026,Pink_SNP,RESPONSE,2,Rajiv Srivastava,Air India Edit Wrap Creative,Pankaj Soni,4000
+05/03/2026,White_SNP,Proof's for TD,4,Braja Sukla,2D-3D layout MM,Tanmoy Das,8000
+10/03/2026,White_SNP,RESPONSE,2,Rajiv Srivastava,Mother Dairy Cow Milk NBT,Palak Maheshwari,4000
+11/03/2026,White_SNP,RESPONSE,4,Rajiv Srivastava,Power ADE (Front + Back),Amit Maheshwari,8000
+18/03/2026,White_SNP,RESPONSE,4,Braja Sukla,Power ADE ,Amit Maheshwari,8000
+25/03/2026,White_SNP,RESPONSE,2,Rajiv Srivastava,Accor group of hotels,Pankaj Soni,4000
+26/03/2026,White_SNP,BRAND,20,S N Jha/ Braja sukla,Parenting story,Priank Mathur,40000
+28/03/2026,White_SNP,RESPONSE,2,Rajiv Srivastava,Accor group of hotels,Amit Maheshwari,4000
+01/04/2026,White_SNP,BRAND,48,S N Jha/ Braja sukla,HEALTH PLUS STORY,Priank Mathur,96000
+16/04/2026,White_SNP,BRAND,1,Rajiv Srivastava,Times Nation,Mahima Pangasa,2000
+20/04/2026,White_SNP,Proof's for TD,9,S N Jha,2D and 3D proofs. PDF sent by Tanmoy,Tanmoy Das,18000
+25/04/2026,White_SNP,RESPONSE,12,Rahul Jain/ Braja sukla,Maaza Mango,Shibabad Press,24000
+29/04/2026,Pink_SNP,RESPONSE,1,Rahul Jain/ Braja sukla,Info Edge,Pankaj Soni,2000
+05/05/2026,White_SNP,RESPONSE,5,S N Jha / Barinder,Daawat Biriyani Fragrance,P Sarath,10000
+05/05/2026,White_SNP,RESPONSE,2,Barinder/Swapan,Vivo Mobile,Amit Maheshwari,4000
+12/05/2026,White_SNP,RESPONSE,16,S N Jha/Barinder,Maaza - 2 books of 8 pages each,Saloni Sharma,32000
+14/05/2026,White_SNP,RESPONSE,3,Braja Sukla,Powerade,Amit Maheshwari,6000
+15/05/2026,White_SNP,RESPONSE,2,Rajiv Srivastava,Maaza,Amit Maheshwari,4000
+15/05/2026,White_SNP,RESPONSE,2,Rajiv Srivastava,Nestle,Amit Maheshwari,4000
+16/05/2026,White_SNP,RESPONSE,3,Satyveer Singh,RSPL Fragarance,Ravi Saini,6000
+19/05/2026,White_SNP,SAHIBABAD PRESS,9,Satyveer Singh,Biriyani fragrance,Ravi Saini,18000
+20/05/2026,White_SNP,SAHIBABAD PRESS,5,Barinder Singh,RSPL Fragarance,Ravi Saini,10000
+25/05/2026,White_SNP,RESPONSE,2,Satyveer/Shubhendu,Orient Electric,Amit Maheshwari,4000
+25/05/2026,Pink_SNP,RESPONSE,2,Satyveer/Shubhendu,Orient Electric,Amit Maheshwari,4000
+26/05/2026,White_SNP,RESPONSE,10,Satyveer Singh,"Mother Dairy - 5 sets (10 nos), 1 copy not ok",Saloni sharma,20000
+26/05/2026,White_SNP,SAHIBABAD PRESS,24,Satyveer Singh,Maruti - 3 sets,Saloni sharma,48000
+26/05/2026,White_SNP,SAHIBABAD PRESS,24,Satyveer Singh,Maruti - 3 sets,Saloni sharma,48000
+26/05/2026,White_SNP,SAHIBABAD PRESS,3,Satyveer Singh,Maruti - 3 sets,Saloni sharma,6000
+27/05/2026,White_SNP,SAHIBABAD PRESS,9,S N Jha,Maruti - 3 sets,Saloni sharma,18000
+27/05/2026,White_SNP,SAHIBABAD PRESS,11,Barinder,Maruti - 3 sets,Saloni sharma,22000
+28/05/2026,White_SNP,RESPONSE,2,S N Jha /Swapan,Google Gemini,Amit Maheshwari,4000
+28/05/2026,White_SNP,RESPONSE,8,S N Jha /Swapan,GMaruti last concept,Sachin Mallik,16000
+06/06/2026,White_SNP,RESPONSE,6,Braja Sukla,Mother Dairy,Saloni sharma,12000
+08/06/2026,White_SNP,RESPONSE,2,BRAJA/SHUBHENDU,Blinkit : Biryani fragrance,Saloni sharma,4000
+08/06/2026,Pink_SNP,RESPONSE,2,Rajesh Kumar ,Renew i5 creative,Pankaj Soni,4000
+11/06/2026,White_SNP,RESPONSE,5,Rajiv Srivastava,Breast Cancer,Sachin Malik (Response),10000
+11/06/2026,White_SNP,RESPONSE,4,Rajiv / Rajesh,MINI COUNTRYMAN SUV,Amit Maheshwari ,8000
+11/06/2026,White_SNP,RESPONSE,1,Rajiv Srivastava,lBMW MINI,Amit Maheshwari ,2000
+11/06/2026,White_SNP,RESPONSE,5,Shubham Garg,Daawat Artwork for Fragance,Amit Maheshwari,10000
+12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava,Bonds,Amit Maheshwari,2000
+12/06/2026,Pink_SNP,RESPONSE,1,Rajiv Srivastava,Bonds,Amit Maheshwari,2000
+19/06/2026,White_SNP,SAHIBABAD PRESS,2,Braja/Rajesh ,Dawat Rice ,press ,4000
+19/06/2026,White_SNP,SAHIBABAD PRESS,4,Rajesh Kumar ,Dawat jacket ,Arvind Patel ,8000
+24/06/2026,White_SNP,RESPONSE,2,Shubhendu,Hero vida,Amit maheshwari,4000
+25/06/2026,White_SNP,RESPONSE (MUMBAI),1,Swapan Sardar,Powerade March 2026,Prashant Amritwar,2000
+26/06/2026,White_SNP,RESPONSE,2,Shubhendu & Swapan,HILTON print campaign -creatives on the ET and TOI front page.,Pankaj Soni,4000
+26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit ,4000
+26/06/2026,White_SNP,RESPONSE,2,Gopal/Anil,Hilton,Amit ,4000
+01/07/2026,White_SNP,RESPONSE,5,Braja/Shubhendu,Dawat Rice ,Amit Maheshwari ,10000
+02 July 2026,White_SNP,RESPONSE,1,Shubham Garg,RE: Biryani Fragrance Innovation: Daawat Rice,Saloni Sharma,2000
+03 July 2026,White_SNP,RESPONSE,2,Swapan Sardar,Biryani Fragrance Innovation: Daawat Rice,Nigarish Anwar,4000
+04 July 2026,White_SNP,Tanmoy Das,5,Swapan Sardar,AI Video pages,Technical Director,10000
+06 July 2026,White_SNP,Shubhankar Nandi,5,S N Jha,,,10000
+07-Jul-2026,White_SNP,RESPONSE,1,Rajesh Kumar ,Orange health lab,Nigarish Anwar,2000
+07-Jul-2026,White_SNP,RESPONSE,1,Rajesh Kumar ,Orange health lab,Nigarish Anwar,2000
+07-Jul-2026,White_SNP,RESPONSE,2,Rajesh Kumar ,Renault Duster adventure ,Nigarish Anwar ,4000
+07-Jul-2026,White_SNP,RESPONSE,3,Atul Srivastava ,Maggi Proof ,Nigarish Anwar ,6000
+14-Jul-2026,Pink_SNP,RESPONSE,2,Rajiv/ Barinder,Air India,Amit Maheshwari ,4000
+15-Jul-2026,White_SNP,RESPONSE,6,Shubham Garg,Nothing Mobile - SNP Proofing ,Amit Maheshwari,12000
+17-Jul-2026,White_SNP,RESPONSE,3,Atul/Shubhendu/Swapan,Maggi Layouts,Amit Maheshwari,6000
